@@ -1,0 +1,42 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  web:
+    resources:
+      add-mappings: false
+  rabbitmq:
+    host: localhost
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: 'info, health'
+      path-mapping:
+        health: 'healthcheck'
+      base-path: '/'
+
+info:
+  build:
+    version": '1.0.0'
+    artifact: 'avroadapter'
+    name: 'Avro Adapter'
+    time: ${maven.build.timestamp}
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+logging:
+  level:
+    org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler: OFF
