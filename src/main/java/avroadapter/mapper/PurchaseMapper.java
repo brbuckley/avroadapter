@@ -1,10 +1,9 @@
 package avroadapter.mapper;
 
+import avroadapter.api.model.purchasems.orderline.PurchaseItem;
 import avroadapter.api.model.purchasems.purchase.PurchaseRequest;
 import avroadapter.api.model.supplierc.orderline.SupplierItem;
 import avroadapter.api.model.supplierc.purchase.SupplierRequest;
-import avroadapter.api.model.purchasems.orderline.PurchaseItem;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -19,8 +18,7 @@ public class PurchaseMapper {
    * @param purchase Supplier Response.
    * @return Purchase Response.
    */
-  public SupplierRequest toSupplierPurchase(
-      PurchaseRequest purchase) {
+  public SupplierRequest toSupplierPurchase(PurchaseRequest purchase) {
     List<SupplierItem> items = new ArrayList<>();
     for (PurchaseItem ordeLine : purchase.getItems()) {
       items.add(new SupplierItem(ordeLine.getQuantity(), ordeLine.getProduct().getId()));

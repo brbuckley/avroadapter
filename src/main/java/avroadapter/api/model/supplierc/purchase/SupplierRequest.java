@@ -1,7 +1,6 @@
 package avroadapter.api.model.supplierc.purchase;
 
 import avroadapter.api.model.supplierc.orderline.SupplierItem;
-
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

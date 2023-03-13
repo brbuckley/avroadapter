@@ -1,12 +1,11 @@
 package avroadapter;
 
-import avroadapter.api.model.supplierc.supplier.SupplierResponse;
 import avroadapter.api.model.purchasems.orderline.PurchaseItem;
 import avroadapter.api.model.purchasems.product.ProductRequest;
 import avroadapter.api.model.purchasems.purchase.PurchaseRequest;
 import avroadapter.api.model.purchasems.purchase.PurchaseResponse;
 import avroadapter.api.model.purchasems.supplier.SupplierRequest;
-
+import avroadapter.api.model.supplierc.supplier.SupplierResponse;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;

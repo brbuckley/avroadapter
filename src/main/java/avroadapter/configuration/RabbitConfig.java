@@ -16,5 +16,5 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationProperties(prefix = "spring.rabbitmq")
 public class RabbitConfig {
 
-    private String host;
+  private String host;
 }

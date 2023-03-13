@@ -1,9 +1,10 @@
 package avroadapter.service;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import avroadapter.api.model.purchasems.purchase.PurchaseRequest;
 import avroadapter.api.model.supplierc.supplier.SupplierResponse;
 import avroadapter.avromapper.AvroMapper;
 import avroadapter.mapper.PurchaseMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,14 +37,14 @@ public class SupplierService {
    */
   public SupplierResponse parseOrder(String correlation, String schema, byte[] message) {
     log.info(
-            "Message received with Correlation: {} | Schema: {} | Body: {}",
-            correlation,
-            schema,
-            message);
+        "Message received with Correlation: {} | Schema: {} | Body: {}",
+        correlation,
+        schema,
+        message);
     try {
       GenericRecord record = (GenericRecord) avroMapper.byteArrayToObject(schema, message);
       SupplierResponse supplierResponse =
-              new SupplierResponse(record.get("id").toString(), record.get("purchase_id").toString());
+          new SupplierResponse(record.get("id").toString(), record.get("purchase_id").toString());
       log.info("Successfully parsed the message into the object: {}", supplierResponse);
       return supplierResponse;
     } catch (Exception e) {
@@ -61,18 +62,17 @@ public class SupplierService {
    */
   @Async
   public void sendToSupplier(String correlationId, PurchaseRequest purchaseRequest)
-          throws IOException {
+      throws IOException {
     System.out.println("Execute method asynchronously. " + Thread.currentThread().getName());
     String json = mapper.writeValueAsString(purchaseMapper.toSupplierPurchase(purchaseRequest));
     GenericRecord record = (GenericRecord) avroMapper.stringToObject("/avro/Purchase.avsc", json);
     byte[] data = avroMapper.objectToByteArray(record);
     log.info("Sending message with id: {} & body: {}", correlationId, data);
     Message message =
-            MessageBuilder.withBody(data)
-                    .setHeader("X-Correlation-Id", correlationId)
-                    .setHeader("Avro-Schema", record.getSchema().toString())
-                    .build();
+        MessageBuilder.withBody(data)
+            .setHeader("X-Correlation-Id", correlationId)
+            .setHeader("Avro-Schema", record.getSchema().toString())
+            .build();
     rabbitTemplate.send("adapter-supplierc", message);
   }
 }
-

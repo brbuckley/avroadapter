@@ -2,7 +2,6 @@ package avroadapter.api.controller;
 
 import avroadapter.api.model.ErrorResponse;
 import avroadapter.util.HeadersUtil;
-
 import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -7,12 +7,12 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import avroadapter.util.Config;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import avroadapter.AdapterResponseUtil;
 import avroadapter.listener.RabbitListeners;
 import avroadapter.service.PurchaseService;
 import avroadapter.service.SupplierService;
+import avroadapter.util.Config;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

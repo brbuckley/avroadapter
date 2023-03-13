@@ -1,10 +1,9 @@
 package avroadapter.api.model.purchasems.purchase;
 
+import avroadapter.api.model.purchasems.orderline.PurchaseItem;
 import avroadapter.api.model.purchasems.supplier.SupplierRequest;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import avroadapter.api.model.purchasems.orderline.PurchaseItem;
-
 import java.sql.Timestamp;
 import java.util.List;
 import javax.validation.Valid;
